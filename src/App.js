@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-// import {Provider} from 'react-redux';
+import {Provider} from 'react-redux';
 // import logo from './logo.svg';
 // import './App.css';
-// import store from './Store.js';
+import store from './Store.js';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import HeaderSignout from './header/header-signout';
 import HeaderSignin from "./header/header-signin";
@@ -31,10 +31,11 @@ class App extends Component {
     //   header = <Header_signout />;
     // }
     return (
+      <Provider store={store}>
       <div>
       <HeaderSignout />
       <HeaderSignin />
-      {/* {/* // <Provider store={store}> */}
+      
         <Router>
           <div>
             <Route exact path="/" component={Home} /> 
@@ -57,6 +58,7 @@ class App extends Component {
         </Router> 
       {/* // </Provider> */}
       </div>
+      </Provider> 
     );
   }
 }
