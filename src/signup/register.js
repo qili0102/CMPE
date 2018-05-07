@@ -7,6 +7,9 @@ import { Redirect } from 'react-router';
 import store from '../Store';
 import axios from 'axios';
 
+const Crypt = require('cryptr');
+const key = new Crypt('noSecret');
+
 const api = 'http://localhost:8080';
 
 class Register extends React.Component {
@@ -29,6 +32,8 @@ class Register extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
+    let hash = key.encrypt(this.state.password);
+    this.setState({password:hash});
     this.props.signUpUser({...this.state});
   }
 

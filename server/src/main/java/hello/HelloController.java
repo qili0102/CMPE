@@ -32,16 +32,12 @@ public class HelloController {
 
     @CrossOrigin(origins = api)
     @PostMapping("/user/signin")
-    public ResponseEntity<String> userSignIn(@RequestBody User user){
+    public String userSignIn(@RequestBody User user){
         // Query query = new Query();
         // query.addCriteria(Criteria.where("email").is(user.email));
         User dbuser = repository.findByEmail(user.email);
         String pass = dbuser.password;
-        if(pass.equals(user.password)){
-            return new ResponseEntity<>(HttpStatus.OK);
-        }else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return pass;
     }
 
     @CrossOrigin(origins = api)

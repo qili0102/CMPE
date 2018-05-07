@@ -7,6 +7,9 @@ import store from '../Store';
 import axios from 'axios';
 import {login} from './actions';
 
+const Crypt = require('cryptr');
+const key = new Crypt('noSecret');
+
 const api = 'http://localhost:8080';
 
 class Login extends React.Component {
@@ -28,7 +31,7 @@ class Login extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-
+    
     this.props.loginUser({...this.state});
   }
 
@@ -77,11 +80,12 @@ const mapDispatchToProps = (dispatch) => {
       loginUser: (user) => {
         axios.post(api+'/user/signin', user).then(
           res=>{
-              if (res.status===200) {
+            var tmp = key.decrypt(res.data);
+              if (user.password === tmp) {
                   dispatch(login(user.email));
               }
           }
-      );
+      ).catch();
       }
   };
 };
