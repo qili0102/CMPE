@@ -1,5 +1,5 @@
 import {createStore, combineReducers} from 'redux';
-import {reducer as userReducer} from './signup';
+import userReducer from './signup/reducers';
 
 const reducer = combineReducers({
     users:userReducer,
@@ -9,4 +9,9 @@ const reducer = combineReducers({
     bids:null
 });
 
+// const initialState={
+//     users: {isRegister: false, isLogin: false}
+// };
+
+// export default createStore(reducer, initialState);
 export default createStore(reducer);

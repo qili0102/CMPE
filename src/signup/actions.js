@@ -1,6 +1,5 @@
 import { USER_SIGNUP } from "./actionTypes";
 
-export const signup = (_user) => ({
+export const signup = () => ({
     type: USER_SIGNUP,
-    user: _user
 });

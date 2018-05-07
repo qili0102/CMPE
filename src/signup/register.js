@@ -5,6 +5,9 @@ import {connect} from 'react-redux';
 import { signup } from "./actions";
 import { Redirect } from 'react-router';
 import store from '../Store';
+import axios from 'axios';
+
+const api = 'http://localhost:8080';
 
 class Register extends React.Component {
   constructor(props){
@@ -63,7 +66,13 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
       signUpUser: (user) => {
-          dispatch(signup(user));
+        axios.post(api+'/user', user).then(
+          res=>{
+              if (res.status===201) {
+                  dispatch(signup());
+              }
+          }
+      );
       }
   };
 };

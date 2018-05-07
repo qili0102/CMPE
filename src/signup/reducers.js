@@ -1,27 +1,16 @@
 import { USER_SIGNUP } from './actionTypes';
-import axios from 'axios';
-import store from '../Store';
+import {USER_LOGIN} from '../signin/actionTypes';
 
-const api = 'http://localhost:8080';
-
-export default (state = {}, action) => {
+export default function userReducer (state = {isRegister: false, isLogin: false}, action) {
     switch (action.type) {
         case USER_SIGNUP: {
-            axios.post(api+'/user', action.user).then(
-                res=>{
-                    console.log(res);
-                    console.log(res.data);
-                    console.log(action.user);
-                    console.log(store.getState());
-                    if (res.status===201) {
-                        return {...state, isRegister: true};
-                    }
-                }
-            );
             return {...state, isRegister: true};
+        }
+        case USER_LOGIN: {
+            return {...state, isLogin: true};
         }
         default: {
             return state;
         }
     }
-};
+}

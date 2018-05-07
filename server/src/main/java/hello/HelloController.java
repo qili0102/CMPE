@@ -31,10 +31,17 @@ public class HelloController {
     }
 
     @CrossOrigin(origins = api)
-    @RequestMapping("/default")
-    public ResponseEntity<String> test(){
-        repository.save(new User("qi.li@gmail.com", "1234"));
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    @PostMapping("/user/signin")
+    public ResponseEntity<String> userSignIn(@RequestBody User user){
+        // Query query = new Query();
+        // query.addCriteria(Criteria.where("email").is(user.email));
+        User dbuser = repository.findByEmail(user.email);
+        String pass = dbuser.password;
+        if(pass.equals(user.password)){
+            return new ResponseEntity<>(HttpStatus.OK);
+        }else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @CrossOrigin(origins = api)
