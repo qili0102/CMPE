@@ -12,7 +12,7 @@ export default function userReducer (state = {isRegister: false, isLogin: false}
             return {...state, isLogin: true, email: action.email};
         }
         case USER_SIGNOUT: {
-            return {...state, isLogin: false, email: null};
+            return {...state, isLogin: false, isRegister: false, email: null};
         }
         case GET_USER_PROFILE: {
             console.log(action.payload);
