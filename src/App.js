@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
 // import './App.css';
+import {connect} from 'react-redux';
 import store from './Store.js';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import HeaderSignout from './header/header-signout';
@@ -15,20 +16,12 @@ import Dashboard from "./dashboard/dashboard";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      user: null
-    }
-  }
   render() {
     let header = null;
-    console.log(store.getState());
-    if (store.getState().users.isLogin) {
-      console.log(store.getState().users.isLogin);
-      header = <HeaderSignin />;
+    let user = store.getState().users;
+    if (user.isLogin) {
+      header = <HeaderSignin name={user.email} />;
     } else {
-      console.log(store.getState().users.isLogin);
       header = <HeaderSignout />;
     }
     return (
@@ -61,4 +54,13 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+      users: {
+        email: state.email,
+        isRegister: false
+      }
+    };
+}
+
+export default connect(mapStateToProps, null)(App);

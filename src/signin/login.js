@@ -78,7 +78,7 @@ const mapDispatchToProps = (dispatch) => {
         axios.post(api+'/user/signin', user).then(
           res=>{
               if (res.status===200) {
-                  dispatch(login());
+                  dispatch(login(user.email));
               }
           }
       );

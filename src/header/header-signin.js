@@ -6,10 +6,13 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink
+  NavLink,
+  Button
 } from 'reactstrap';
+import {connect} from 'react-redux';
+import { signout } from './actions';
 
-export default class HeaderSignin extends React.Component {
+class HeaderSignin extends React.Component {
   constructor(props) {
     super(props);
 
@@ -32,7 +35,7 @@ export default class HeaderSignin extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/user/signout/">Sign Out</NavLink>
+                <Button color="link" onClick={()=>this.props.signOut()}>Sign out</Button>
               </NavItem>
               <NavItem>
                 <NavLink href="/dashboard">Dashboard</NavLink>
@@ -44,7 +47,7 @@ export default class HeaderSignin extends React.Component {
                 <NavLink href="/project/add/">Post Project</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/user/profile/">Hi, {}</NavLink>
+                <NavLink href="/user/profile/">Hi, {this.props.name}</NavLink>
               </NavItem>
             </Nav>
           </Collapse>
@@ -53,3 +56,22 @@ export default class HeaderSignin extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+      users: {
+        email: state.email,
+        isRegister: false
+      }
+    };
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+      signOut: () => {
+        dispatch(signout()); 
+      }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderSignin);
