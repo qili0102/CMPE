@@ -9,12 +9,22 @@ import axios from 'axios';
 const api = 'http://localhost:8080';
 
 class Profile extends React.Component {
+    constructor(props){
+    super(props);
+
+    this.state = {
+      img_src: "https://www.w3schools.com/bootstrap/cinqueterre.jpg"
+    }
+
+    // this.handleChange = this.handleChange.bind(this);
+  }
 
     componentDidMount(){
         this.props.getProfile({...this.state});
         console.log(store.getState().users);
         this.setState(store.getState().users);
     }
+
 
     render() {
         return (
@@ -27,7 +37,8 @@ class Profile extends React.Component {
                         <Col sm="5" >
                         </Col>
                         <Col sm="3" >
-                        <img src="https://www.w3schools.com/bootstrap/cinqueterre.jpg" className="img-thumbnail float-sm-right" alt="profile-img"/>
+                        <img src={this.state.img_src} className="img-thumbnail float-sm-right" alt="profile-img"/>
+                        
                         </Col>
                     </Row>
                 </Jumbotron>

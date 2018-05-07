@@ -63,6 +63,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
       updateProfile: (user, path) => {
+      	console.log(user);
           axios.post(api+'/user/profile/' + path, user).then(
             res=>{
                 dispatch(update_profile(user));

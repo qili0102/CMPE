@@ -81,7 +81,7 @@ public class HelloController {
     }
 
     @CrossOrigin(origins = api)
-    @PostMapping("/user/profile/aboutme")
+    @PostMapping("/user/profile/aboutMe")
     public ResponseEntity<String> updateUserAboutMe(@RequestBody User user){
         User dbuser = repository.findByEmail(user.email);
         dbuser.setAboutMe(user.aboutMe);
