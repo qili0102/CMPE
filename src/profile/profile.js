@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListGroup, Jumbotron, Row, Col } from 'reactstrap';
+import { ListGroup, Jumbotron, Row, Col, ListGroupItem } from 'reactstrap';
 import EditField from './edit_field';
 import {store} from '../Store';
 import { get_profile } from './actions';
@@ -47,7 +47,16 @@ class Profile extends React.Component {
                     </Row>
                 </Jumbotron>
                 <ListGroup>
-                    <EditField />
+                    <EditField title="Name" name="name" desc={this.state.name} updateProfile={()=>this.props.updateName()}/>
+                    <ListGroupItem className="justify-content-between">
+                        <div className="well well-sm">Email</div>
+                        <div>
+                              {this.state.email}
+                        </div>
+                    </ListGroupItem>
+                    <EditField title="Phone Number" name="phone" desc={this.state.phone} updateProfile={()=>this.props.updatePhone()}/>
+                    <EditField title="About Me" name="aboutMe" desc={this.state.aboutMe} updateProfile={()=>this.props.updateAboutMe()}/>
+                    <EditField title="Skills" name="skills" desc={this.state.skill} updateProfile={()=>this.props.updateSkills()}/>
                 </ListGroup>
             </div>
         );
