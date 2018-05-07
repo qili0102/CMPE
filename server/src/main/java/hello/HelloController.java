@@ -53,4 +53,49 @@ public class HelloController {
         return dbuser;
     }
 
+    @CrossOrigin(origins = api)
+    @PostMapping("/user/profile/name")
+    public ResponseEntity<String> updateUserName(@RequestBody User user){
+        User dbuser = repository.findByEmail(user.email);
+        dbuser.setName(user.name);
+        repository.save(dbuser);
+        return new ResponseEntity<>(HttpStatus.OK); 
+    }
+
+    @CrossOrigin(origins = api)
+    @PostMapping("/user/profile/img")
+    public ResponseEntity<String> updateUserImg(@RequestBody User user){
+        User dbuser = repository.findByEmail(user.email);
+        dbuser.setImg(user.img);
+        repository.save(dbuser);
+        return new ResponseEntity<>(HttpStatus.OK); 
+    }
+    
+    @CrossOrigin(origins = api)
+    @PostMapping("/user/profile/phone")
+    public ResponseEntity<String> updateUserPhone(@RequestBody User user){
+        User dbuser = repository.findByEmail(user.email);
+        dbuser.setPhone(user.phone);
+        repository.save(dbuser);
+        return new ResponseEntity<>(HttpStatus.OK); 
+    }
+
+    @CrossOrigin(origins = api)
+    @PostMapping("/user/profile/aboutme")
+    public ResponseEntity<String> updateUserAboutMe(@RequestBody User user){
+        User dbuser = repository.findByEmail(user.email);
+        dbuser.setAboutMe(user.aboutMe);
+        repository.save(dbuser);
+        return new ResponseEntity<>(HttpStatus.OK); 
+    }
+
+    @CrossOrigin(origins = api)
+    @PostMapping("/user/profile/skills")
+    public ResponseEntity<String> updateUserSkills(@RequestBody User user){
+        User dbuser = repository.findByEmail(user.email);
+        dbuser.setSkills(user.skills);
+        repository.save(dbuser);
+        return new ResponseEntity<>(HttpStatus.OK); 
+    }
+
 }
