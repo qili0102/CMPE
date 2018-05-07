@@ -9,6 +9,7 @@ import {
   NavLink,
   Button
 } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
 import { signout } from './actions';
 
@@ -35,7 +36,7 @@ class HeaderSignin extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <Button color="link" onClick={()=>this.props.signOut()}>Sign out</Button>
+                <Button outline color="secondary"><Link to="/user/login" color="link" onClick={()=>this.props.signOut()}>Sign out</Link></Button>
               </NavItem>
               <NavItem>
                 <NavLink href="/dashboard">Dashboard</NavLink>
@@ -69,6 +70,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
       signOut: () => {
+        console.log('here');
         dispatch(signout()); 
       }
   };

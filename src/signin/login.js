@@ -3,7 +3,7 @@ import { Button, FormGroup, Label, Alert } from 'reactstrap';
 import { AvForm, AvField } from 'availity-reactstrap-validation';
 import { Redirect } from 'react-router';
 import {connect} from 'react-redux';
-import store from '../Store';
+import {store} from '../Store';
 import axios from 'axios';
 import {login} from './actions';
 

@@ -46,4 +46,11 @@ public class HelloController {
         return repository.findAll();
     }
 
+    @CrossOrigin(origins = api)
+    @PostMapping("/user/profile")
+    public User userProfile(@RequestBody User user){
+        User dbuser = repository.findByEmail(user.email);
+        return dbuser;
+    }
+
 }

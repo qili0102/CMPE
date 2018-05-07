@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import logo from './logo.svg';
 // import './App.css';
 import {connect} from 'react-redux';
-import store from './Store.js';
+import {store, persistor} from './Store.js';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import HeaderSignout from './header/header-signout';
 import HeaderSignin from "./header/header-signin";
@@ -14,6 +14,7 @@ import Home from './home/home';
 import ProjectDetail from "./project/project_details";
 import Dashboard from "./dashboard/dashboard";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { PersistGate } from 'redux-persist/integration/react';
 
 class App extends Component {
   render() {
@@ -26,9 +27,10 @@ class App extends Component {
     }
     return (
       <div>
-      {header}
+        <PersistGate loading={null} persistor={persistor}>
         <Router>
           <div>
+            {header}
             <Route exact path="/" component={Home} /> 
             <Route exact path="/user/register/" component={Register} />
             <Route exact path="/user/login/" component={Login} />
@@ -37,17 +39,8 @@ class App extends Component {
             <Route exact path="/project/detail/" component={ProjectDetail} />
             <Route exact path="/dashboard" component={Dashboard} />
           </div>
-        {/* //   {header} */}
-          {/* // */} 
-          
-          {/* 
-          <Route exact path="/user/profile/" component={Profile} />
-          <Route exact path="/user/update/" component={UserUpdate} />
-          <Route exact path="/project/add/" component={AddProject} />
-          <Route exact path="/project/detail/" component={ProjectDetail} />
-          <Route exact path="/dashboard" component={DashBoard} /> */}
         </Router> 
-      {/* // </Provider> */}
+        </PersistGate>
       </div>
       
     );

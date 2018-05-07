@@ -4,7 +4,7 @@ import { AvForm, AvField } from 'availity-reactstrap-validation';
 import {connect} from 'react-redux';
 import { signup } from "./actions";
 import { Redirect } from 'react-router';
-import store from '../Store';
+import {store} from '../Store';
 import axios from 'axios';
 
 const Crypt = require('cryptr');
