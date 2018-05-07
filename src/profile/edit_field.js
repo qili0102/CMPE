@@ -16,6 +16,12 @@ class EditField extends React.Component {
       isEdit: false,
       desc: null
     }
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    this.setState({desc: e.target.value});
   }
 
   render() {
@@ -27,8 +33,8 @@ class EditField extends React.Component {
       </div>
     ) : (
       <div>
-          <Input placeholder={_desc} name={this.props.name} value={this.state.desc} onChange={(e)=>this.setState({[e.target.name]: e.target.value})} />
-          <Button className="float-sm-right" color="primary" onClick={(e)=>{this.setState({isEdit:!this.state.isEdit}); this.props.updateProfile({email: this.state.email, [e.target.name]: this.state.desc}, this.props.name);}}>Confirm</Button>
+          <Input placeholder={_desc} name={this.props.name} value={this.state.desc} onChange={this.handleChange} />
+          <Button className="float-sm-right" color="primary" onClick={()=>{this.setState({isEdit:!this.state.isEdit}); this.props.updateProfile({email: this.state.email, [this.props.name]: this.state.desc}, this.props.name);}}>Confirm</Button>
       </div>
     );
     return (
@@ -59,7 +65,7 @@ const mapDispatchToProps = (dispatch) => {
       updateProfile: (user, path) => {
           axios.post(api+'/user/profile/' + path, user).then(
             res=>{
-                  dispatch(update_profile(user));
+                dispatch(update_profile(user));
             }
         ).catch();
       }

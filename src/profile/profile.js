@@ -9,21 +9,6 @@ import axios from 'axios';
 const api = 'http://localhost:8080';
 
 class Profile extends React.Component {
-    constructor(props){
-        super(props);
-
-        let user = store.getState().users;
-        console.log(store.getState());
-        this.state={
-            name: user.name,
-            img: user.img,
-            email: user.email,
-            phone: user.phone,
-            aboutMe: user.aboutMe,
-            skill: user.skill,
-            isLogin: true
-        };
-    }
 
     componentDidMount(){
         this.props.getProfile({...this.state});
@@ -47,16 +32,16 @@ class Profile extends React.Component {
                     </Row>
                 </Jumbotron>
                 <ListGroup>
-                    <EditField title="Name" name="name" desc={this.state.name} updateProfile={()=>this.props.updateName()}/>
+                    <EditField title="Name" name="name" desc={store.getState().users.name} />
                     <ListGroupItem className="justify-content-between">
                         <div className="well well-sm">Email</div>
                         <div>
-                              {this.state.email}
+                              {store.getState().users.email}
                         </div>
                     </ListGroupItem>
-                    <EditField title="Phone Number" name="phone" desc={this.state.phone} updateProfile={()=>this.props.updatePhone()}/>
-                    <EditField title="About Me" name="aboutMe" desc={this.state.aboutMe} updateProfile={()=>this.props.updateAboutMe()}/>
-                    <EditField title="Skills" name="skills" desc={this.state.skill} updateProfile={()=>this.props.updateSkills()}/>
+                    <EditField title="Phone Number" name="phone" desc={store.getState().users.phone} />
+                    <EditField title="About Me" name="aboutMe" desc={store.getState().users.aboutMe} />
+                    <EditField title="Skills" name="skills" desc={store.getState().users.skills} />
                 </ListGroup>
             </div>
         );
@@ -71,7 +56,7 @@ const mapStateToProps = (state) => {
             email: state.email,
             phone: state.phone,
             aboutMe: state.aboutMe,
-            skill: state.skill,
+            skills: state.skills,
             isLogin: true
         }
       };
