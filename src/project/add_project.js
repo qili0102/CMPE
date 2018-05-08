@@ -15,18 +15,21 @@ class AddProject extends React.Component {
   constructor(props){
     super(props);
 
-    this.state={}
+    this.state={
+      isAdded: false
+    }
 
     this.handleValidSubmit = this.handleValidSubmit.bind(this);
   }
 
   handleValidSubmit(event, values) {
     // console.log(values);
-    this.setState({...values, employer_email: store.getState().users.email, status: PROJ_OPEN});
+    this.setState({...values, employerEmail: store.getState().users.email, status: PROJ_OPEN, bid_count: 0});
     console.log(this.state);
     axios.post(api+'/project', {...this.state}).then(
       res=>{
         if (res.status === 201) {
+          this.setState({isAdded: true})
           this.props.addProject(values.title);
         }
       }
@@ -34,7 +37,7 @@ class AddProject extends React.Component {
   }
 
 render() {
-  if (store.getState().current_project.title !== undefined) {
+  if (this.state.isAdded) {
     return (<Redirect to="/project/published/"/>);
   }
     return (

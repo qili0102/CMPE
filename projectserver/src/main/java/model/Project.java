@@ -17,10 +17,11 @@ public class Project {
     public int budget_range_end;
     public String status;
     public String freelancer_email;
+    public int bid_count;
 
     public Project() {}
 
-    public Project(String title, String employer_email, String description, String file, String skill_required, int budget_range_start, int budget_range_end, String status) {
+    public Project(String title, String employer_email, String description, String file, String skill_required, int budget_range_start, int budget_range_end, String status, int bid_count) {
         this.title = title;
         this.employerEmail = employer_email;
         this.description = description;
@@ -29,6 +30,7 @@ public class Project {
         this.budget_range_start = budget_range_start;
         this.budget_range_end = budget_range_end;
         this.status = status;
+        this.bid_count = bid_count;
     }
 
     public void setStatus(String status){
