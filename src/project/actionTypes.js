@@ -1,0 +1,2 @@
+export const GET_POST_PROJECTS = 'PROJECT/GET_POSTS';
+export const ADD_PROJECT = 'PROJECT/ADD';

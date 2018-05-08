@@ -7,7 +7,7 @@ export default class InputField extends React.Component {
       return (
         <FormGroup key={this.props.key}>
           <Label for={this.props.proj_name}>{this.props.proj_name}</Label>
-          <AvField type={this.props.type} name={this.props.proj_name} placeholder={this.props.proj_name} required/>
+          <AvField type={this.props.type} name={this.props.name}  placeholder={this.props.proj_name}  required/>
         </FormGroup>
       );
     }

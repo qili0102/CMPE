@@ -3,13 +3,15 @@ import userReducer from './signup/reducers';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
+import currentProjectReducer from './project/currentProjReducers';
 
 const reducer = combineReducers({
-    users:userReducer,
+    users: userReducer,
     post_projects:null,
     bid_projects:null,
     open_projects:null,
-    bids:null
+    bids:null,
+    current_project: currentProjectReducer
 });
 
 const persistConfig = {
