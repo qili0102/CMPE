@@ -37,6 +37,7 @@ public class HelloController {
         // query.addCriteria(Criteria.where("email").is(user.email));
         User dbuser = repository.findByEmail(user.email);
         String pass = dbuser.password;
+        System.out.println("signin:"+HttpStatus.OK);
         return pass;
     }
 
@@ -50,6 +51,7 @@ public class HelloController {
     @PostMapping("/user/profile")
     public User userProfile(@RequestBody User user){
         User dbuser = repository.findByEmail(user.email);
+        System.out.println("profile:"+HttpStatus.OK);
         return dbuser;
     }
 
@@ -59,6 +61,7 @@ public class HelloController {
         User dbuser = repository.findByEmail(user.email);
         dbuser.setName(user.name);
         repository.save(dbuser);
+        System.out.println("profile/name:"+HttpStatus.OK);
         return new ResponseEntity<>(HttpStatus.OK); 
     }
 
@@ -68,6 +71,7 @@ public class HelloController {
         User dbuser = repository.findByEmail(user.email);
         dbuser.setImg(user.img);
         repository.save(dbuser);
+        System.out.println("profile/img:"+HttpStatus.OK);
         return new ResponseEntity<>(HttpStatus.OK); 
     }
     
@@ -77,6 +81,7 @@ public class HelloController {
         User dbuser = repository.findByEmail(user.email);
         dbuser.setPhone(user.phone);
         repository.save(dbuser);
+        System.out.println("profile/phone:"+HttpStatus.OK);
         return new ResponseEntity<>(HttpStatus.OK); 
     }
 
@@ -86,6 +91,7 @@ public class HelloController {
         User dbuser = repository.findByEmail(user.email);
         dbuser.setAboutMe(user.aboutMe);
         repository.save(dbuser);
+        System.out.println("profile/aboutMe:"+HttpStatus.OK);
         return new ResponseEntity<>(HttpStatus.OK); 
     }
 
@@ -95,6 +101,7 @@ public class HelloController {
         User dbuser = repository.findByEmail(user.email);
         dbuser.setSkills(user.skills);
         repository.save(dbuser);
+        System.out.println("profile/skills:"+HttpStatus.OK);
         return new ResponseEntity<>(HttpStatus.OK); 
     }
 
